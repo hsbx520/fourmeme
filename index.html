@@ -1,0 +1,570 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$FOUR - Official Token of Four.meme</title>
+    <link rel="icon" type="image/svg+xml" href="https://four.meme/_next/static/media/logo.fd63b04b.svg">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.js" type="application/javascript"></script>
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script src="https://unpkg.com/@web3modal/standalone@2.4.1/dist/index.umd.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://four.meme/_next/static/media/logo.fd63b04b.svg" alt="$FOUR Logo" class="logo-image">
+            </div>
+            <nav class="nav-links">
+                <!-- Links will be generated dynamically -->
+            </nav>
+            <div class="nav-actions">
+                <button class="connect-wallet-btn">Connect Wallet</button>
+                <button class="menu-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">The Official Token of</span>
+                    <span class="title-line highlight">Four.meme</span>
+                </h1>
+                <p class="hero-subtitle">$FOUR is now live on BNB Chain</p>
+                <div class="hero-buttons">
+                    <a href="#presale" class="btn btn-green">Buy $FOUR</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://pbs.twimg.com/profile_images/1879442339724509184/d7WOEMLe_400x400.jpg" alt="Four.meme Visual" class="hero-visual-image">
+            </div>
+        </section>
+
+        <!-- Presale Section -->
+        <section id="presale" class="presale">
+            <div class="container">
+                <div class="presale-content-wrapper">
+                    <div class="presale-image-container">
+                        <img src="https://assets.staticimg.com/reaper-image/67bd52dcac61ad00011e4c84_67b6f7586c1d560001d3d619_Learn-What%20is%20Four.Meme-1600x900.jpg" alt="Four.meme Presale" class="presale-featured-image">
+                    </div>
+                    <div class="presale-box">
+                        <h2 class="presale-title">Join the $FOUR Presale</h2>
+                        
+                        <div class="presale-countdown">
+                            <h3>Presale Ends In:</h3>
+                            <div class="countdown-timer">
+                                <div class="time-unit">
+                                    <span id="days" class="time-value">00</span>
+                                    <span class="time-label">Days</span>
+                                </div>
+                                <div class="time-unit">
+                                    <span id="hours" class="time-value">00</span>
+                                    <span class="time-label">Hours</span>
+                                </div>
+                                <div class="time-unit">
+                                    <span id="minutes" class="time-value">00</span>
+                                    <span class="time-label">Minutes</span>
+                                </div>
+                                <div class="time-unit">
+                                    <span id="seconds" class="time-value">00</span>
+                                    <span class="time-label">Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="presale-progress">
+                            <div class="presale-progress-info">
+                                <span>Raised: $1,250,000</span>
+                            </div>
+                        </div>
+
+                        <div id="wallet-info" class="wallet-info" style="display: none;">
+                            <div class="wallet-status">
+                                <span id="connection-status" class="status-disconnected"></span>
+                                <span id="wallet-address"></span>
+                            </div>
+                            <div id="network-status" class="network-status">
+                                <span>Network: <span id="network-name"></span></span>
+                                <button id="switch-network-btn" style="display: none;">Switch to BSC</button>
+                            </div>
+                        </div>
+
+                        <p class="presale-instructions">Select currency, enter amount, and connect wallet to purchase. Tokens will be airdropped after the presale ends.</p>
+
+                        <div class="currency-selector">
+                            <button class="currency-tab active" data-currency="BNB">BNB</button>
+                            <button class="currency-tab" data-currency="USDT">USDT</button>
+                            <button class="currency-tab" data-currency="USDC">USDC</button>
+                        </div>
+                        <div class="purchase-form">
+                            <div class="form-group">
+                                <label for="pay-amount">You pay</label>
+                                <div class="input-group">
+                                    <input type="number" id="pay-amount" placeholder="0.0">
+                                    <span id="pay-currency">BNB</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="receive-amount">You receive</label>
+                                <div class="input-group">
+                                    <input type="text" id="receive-amount" placeholder="0.0" readonly>
+                                    <span>$FOUR</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="presale-actions">
+                            <button id="connect-wallet-presale-btn" class="btn btn-primary btn-large">Connect Wallet</button>
+                            <button id="buy-btn" class="btn btn-green btn-large" style="display: none;">Buy Now</button>
+                            <div class="help-buttons">
+                                <button id="how-to-buy-btn" class="btn btn-help">✅ How to Buy</button>
+                                <button id="connection-help-btn" class="btn btn-help">❓ Can't Connect Wallet?</button>
+                            </div>
+                        </div>
+                        <p id="presale-message" class="presale-message"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is $FOUR -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">What is $FOUR?</h2>
+                <div class="about-content">
+                    <div class="about-visual">
+                        <img src="https://www.cryptocity.tw/_next/image?url=https%3A%2F%2Fcdn.cryptocity.tw%2Fupload%2FTHJcc4e1Pxa40iD1krEyK.png&w=3840&q=75" alt="Four.meme Token Flow" class="about-illustration">
+                    </div>
+                    <p class="about-description">
+                        $FOUR is the official utility token of Four.meme, designed to power the next generation of meme token launches. 
+                        Built on BNB Chain, $FOUR serves as the gateway to exclusive features, governance rights, and premium benefits 
+                        within the Four.meme ecosystem.
+                    </p>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="governance-icon.png" alt="Governance" class="feature-icon-img">
+                            </div>
+                            <h3>Governance Rights</h3>
+                            <p>Vote on platform decisions and proposal implementations</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="launch-icon.png" alt="Launch" class="feature-icon-img">
+                            </div>
+                            <h3>Launch Permissions</h3>
+                            <p>Priority access to create and launch new meme tokens</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="rewards-icon.png" alt="Rewards" class="feature-icon-img">
+                            </div>
+                            <h3>Fee Rebates</h3>
+                            <p>Reduced platform fees and transaction cost savings</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="airdrop-icon.png" alt="Airdrop" class="feature-icon-img">
+                            </div>
+                            <h3>Airdrop Eligibility</h3>
+                            <p>Exclusive access to new token airdrops and rewards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics -->
+        <section id="tokenomics" class="tokenomics">
+            <div class="container">
+                <h2 class="section-title">Tokenomics</h2>
+                <div class="tokenomics-content">
+                    <div class="tokenomics-chart">
+                        <canvas id="tokenomicsChart"></canvas>
+                    </div>
+                    <div class="tokenomics-details">
+                        <div class="total-supply">
+                            <h3>Total Supply</h3>
+                            <p class="supply-number">100,000,000,000 $FOUR</p>
+                        </div>
+                        <div class="allocation-list">
+                            <div class="allocation-item">
+                                <span class="allocation-label">Presale (ICO)</span>
+                                <span class="allocation-percent">24.44%</span>
+                            </div>
+                            <div class="allocation-item">
+                                <span class="allocation-label">Liquidity & Listing</span>
+                                <span class="allocation-percent">16%</span>
+                            </div>
+                            <div class="allocation-item">
+                                <span class="allocation-label">Community Rewards & Airdrops</span>
+                                <span class="allocation-percent">20%</span>
+                            </div>
+                            <div class="allocation-item">
+                                <span class="allocation-label">Team & Advisors</span>
+                                <span class="allocation-percent">16%</span>
+                            </div>
+                            <div class="allocation-item">
+                                <span class="allocation-label">Ecosystem Development Fund</span>
+                                <span class="allocation-percent">12%</span>
+                            </div>
+                            <div class="allocation-item">
+                                <span class="allocation-label">Governance & DAO Fund</span>
+                                <span class="allocation-percent">11.56%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress -->
+        <section id="progress" class="progress">
+            <div class="container">
+                <h2 class="section-title">How to Purchase $FOUR</h2>
+                <div class="purchase-info-content">
+                    <div class="purchase-visual">
+                        <img src="https://www.accesswire.com/imagelibrary/f11440e0-de8e-4a54-b85a-59a203756818/885128/image.jpeg"
+                             alt="How to Purchase Visual"
+                             class="purchase-visual-image">
+                    </div>
+                    <div class="purchase-details">
+                        <div class="purchase-grid">
+                            <div class="purchase-item">
+                                <h4>Presale Price</h4>
+                                <p>1 $FOUR = 0.0044 USDT (fixed price)</p>
+                            </div>
+                            <div class="purchase-item">
+                                <h4>Presale Allocation</h4>
+                                <p>24,440,000,000 $FOUR (out of 100,000,000,000 total supply)</p>
+                            </div>
+                            <div class="purchase-item">
+                                <h4>Accepted Tokens</h4>
+                                <p>BNB, USDT, USDC (on Binance Smart Chain)</p>
+                            </div>
+                            <div class="purchase-item">
+                                <h4>Presale Deadline</h4>
+                                <p>Until cap is reached or time limit expires</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="token-delivery-notice">⏳ Note: All purchased tokens will be automatically distributed to the buyer's wallet after the presale ends. There will be no claim button. Please make sure your wallet remains accessible.</p>
+                <div class="purchase-info-actions">
+                    <a href="#presale" class="btn btn-green">Buy Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="use-cases">
+            <div class="container">
+                <h2 class="section-title">Use Cases</h2>
+                <div class="use-cases-content">
+                    <div class="use-cases-visual">
+                        <img src="https://img.cryptorank.io/coins/four_meme1724312556830.png" alt="Four Meme Use Cases" class="use-cases-image">
+                    </div>
+                    <div class="use-cases-grid">
+                        <div class="use-case-card">
+                            <h3>Launch Permission</h3>
+                            <p>Stake $FOUR to gain access to create and launch new meme tokens on the Four.meme platform</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h3>Governance Voting</h3>
+                            <p>Participate in platform governance decisions and vote on new features and proposals</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h3>Liquidity Rewards</h3>
+                            <p>Earn additional $FOUR tokens by providing liquidity to the platform's trading pairs</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h3>Early Access</h3>
+                            <p>Get priority access to new token launches and exclusive presale opportunities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section id="partners" class="partners">
+            <div class="container">
+                <h2 class="section-title">Our Partners</h2>
+                <div class="logo-scroller" data-animated="true">
+                    <div class="scroller-inner">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Faveai.dbb1b1a6.jpg&w=375&q=75" alt="Ave.ai">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcoin-marketcap.c0e92fdc.jpg&w=375&q=75" alt="CoinMarketCap">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgoplus.c06a93e9.jpg&w=375&q=75" alt="GoPlus">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblock-beats.beb398ab.jpg&w=375&q=75" alt="BlockBeats">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbybit.027ded4b.jpg&w=375&q=75" alt="Bybit">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fphoton.9a4a5351.jpg&w=375&q=75" alt="Photon">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fholo-world.1e7a5c4f.jpg&w=375&q=75" alt="Holo World">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmy-shell.f4e3d21b.jpg&w=375&q=75" alt="My Shell">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Faster.0de214d7.jpg&w=375&q=75" alt="Aster">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdappos.423ec4bd.jpg&w=375&q=75" alt="Dappos">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fokx.91720f8a.jpg&w=375&q=75" alt="OKX">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgmgn.ddde1d68.jpg&w=375&q=75" alt="GMGN">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmaestro.0147f77a.jpg&w=375&q=75" alt="Maestro">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpancake.008d1be0.jpg&w=375&q=75" alt="PancakeSwap">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbinance.d945de63.jpg&w=375&q=75" alt="Binance">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftrust.fb56a140.jpg&w=375&q=75" alt="Trust Wallet">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsafepal.2f052da1.jpg&w=375&q=75" alt="SafePal">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgate.f907498f.jpg&w=375&q=75" alt="Gate.io">
+                        <img src="https://four.meme/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftoken-pocket.70b4ae92.jpg&w=375&q=75" alt="Token Pocket">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section id="roadmap" class="roadmap">
+            <div class="container">
+                <h2 class="section-title">Roadmap</h2>
+                <div class="roadmap-content">
+                    <div class="roadmap-visual">
+                        <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*19P9mgf-3tWyD5lAB7lG9w@2x.jpeg" alt="Four.meme Roadmap" class="roadmap-image">
+                    </div>
+                    <div class="roadmap-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-quarter">
+                                <img src="calendar-icon.png" alt="Calendar" class="timeline-icon">
+                                Phase 1: July 2025
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Launch & Community Foundation</h3>
+                                <ul>
+                                    <li>Official launch of four.meme platform token</li>
+                                    <li>Launch presale page supporting BNB/USDT/USDC multi-currency purchases</li>
+                                    <li>Integrate wallet connection + manual transfer participation mechanism</li>
+                                    <li>Website supports Chinese-English switching to strengthen international communication</li>
+                                    <li>Publish media press releases to attract industry attention</li>
+                                    <li>Community building, airdrop mechanism in preparation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-quarter">
+                                <img src="rocket-roadmap.png" alt="Rocket" class="timeline-icon">
+                                Phase 2: August 2025
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Presale Completion & DEX Listing</h3>
+                                <ul>
+                                    <li>Presale ends, proportional token distribution completed</li>
+                                    <li>Token listing on mainstream DEXs like PancakeSwap</li>
+                                    <li>Launch liquidity mining incentive program</li>
+                                    <li>Publish community governance voting mechanism draft</li>
+                                    <li>Collaborate with multiple projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-quarter">
+                                <img src="blocks-icon.png" alt="Blocks" class="timeline-icon">
+                                Phase 3: September 2025
+                            </div>
+                            <div class="timeline-content">
+                                <h3>CEX Listing & Ecosystem Growth</h3>
+                                <ul>
+                                    <li>Apply for listing on centralized exchanges like Binance</li>
+                                    <li>Build Launchpad platform, open first batch of fair launch project channels</li>
+                                    <li>Launch creator recruitment program to attract meme creative teams</li>
+                                    <li>Introduce community referral reward mechanism</li>
+                                    <li>Launch NFT support/airdrop experimental program</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-quarter">
+                                <img src="lightning-icon.png" alt="Lightning" class="timeline-icon">
+                                Phase 4: October 2025+
+                            </div>
+                            <div class="timeline-content">
+                                <h3>DAO & Long-Term Governance</h3>
+                                <ul>
+                                    <li>Release DAO governance mechanism, holders can propose and vote on project development</li>
+                                    <li>Establish foundation (Four DAO) to support excellent meme project incubation</li>
+                                    <li>Token integration with more DApps and Web3 platforms</li>
+                                    <li>Cross-chain deployment (BSC → Arbitrum/Base and other chains)</li>
+                                    <li>Host annual community conference to promote global development</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">
+                    <img src="https://dappbay-static.bnbchain.org/static/dapp-uploads/O26U590-Lxaqp9JtXhniU" alt="Robot" class="section-icon">
+                    FAQ & Contract Info
+                </h2>
+                <div class="faq-content">
+                    <div class="faq-section">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">What is the purpose of $FOUR?</div>
+                            <div class="faq-answer">$FOUR is the utility token that powers the Four.meme ecosystem, providing governance rights, launch permissions, and exclusive benefits.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">How can I buy $FOUR tokens?</div>
+                            <div class="faq-answer">You can purchase $FOUR during the presale through our platform using BNB. Connect your wallet and follow the purchase instructions.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Which exchanges will $FOUR be listed on?</div>
+                            <div class="faq-answer">✅ $FOUR is planned to be listed on major centralized exchanges (CEXs) such as Binance and OKX, following its initial launch on PancakeSwap and other leading DEXs. Further listing announcements will be made through our official channels.</div>
+                        </div>
+                    </div>
+                    <div class="contract-info">
+                        <h3>
+                            <img src="shield-icon.png" alt="Shield" class="contract-icon">
+                            Contract Information
+                        </h3>
+                        <div class="contract-details">
+                            <div class="contract-item">
+                                <span class="contract-label">Contract Address:</span>
+                                <span class="contract-value">Coming Soon...</span>
+                            </div>
+                            <div class="contract-item">
+                                <span class="contract-label">Network:</span>
+                                <span class="contract-value">BNB Smart Chain</span>
+                            </div>
+                            <div class="contract-item">
+                                <span class="contract-label">Audit Status:</span>
+                                <span class="contract-value audit-passed">✓ Audited by CertiK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://four.meme/_next/static/media/logo.fd63b04b.svg" alt="$FOUR Logo" class="footer-logo-image">
+                </div>
+                <div class="footer-links">
+                    <a href="https://four-meme.gitbook.io/four.meme/protocol-integration" target="_blank">GitBook</a>
+                    <a href="https://medium.com/@four.meme" target="_blank">Medium</a>
+                    <a href="https://www.youtube.com/@Four_Meme" target="_blank">YouTube</a>
+                    <a href="https://discord.com/invite/fourmeme" target="_blank">Discord</a>
+                    <a href="https://t.me/four_meme" target="_blank">Telegram</a>
+                    <a href="https://x.com/four_meme_" target="_blank">X</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                <p><strong>Disclaimer:</strong> Digital assets are highly speculative and involve a significant risk of loss. The value of meme coins is extremely volatile, and anyone wishing to trade them should be prepared for the potential loss of their entire investment. FOUR.MEME makes no representations or warranties regarding the success or profitability of any meme coin developed on the platform. FOUR.MEME is a public, decentralized, and permissionless platform. Participation in any project should not be considered an endorsement or recommendation by FOUR.MEME. Users should assess their own financial situation, risk tolerance, and conduct their own research (DYOR) before trading any meme coin on the platform. FOUR.MEME assumes no liability for any losses, damages, or issues that may arise from trading any meme coin developed on the platform. For more information on DYOR, please refer to resources like <a href="https://academy.binance.com/en/glossary/do-your-own-research" target="_blank" class="disclaimer-link">Binance Academy</a> and our <a href="https://opaque-foxtrot-952.notion.site/TERMS-df3c84b276c54428904bbf282e72ff71" target="_blank" class="disclaimer-link">Terms of Use</a>.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Four.meme. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="how-to-buy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 class="modal-title">✅ How to Buy $FOUR</h3>
+            <div class="modal-message">
+                <p>Steps to purchase $FOUR tokens:</p>
+                
+                <div class="pricing-info">
+                    <h4>Current Pricing:</h4>
+                    <ul class="pricing-list">
+                        <li>1 BNB = 144,400 FOUR</li>
+                        <li>1 USDT/USDC = 194 FOUR</li>
+                    </ul>
+                </div>
+                
+                <ol class="help-list">
+                    <li><strong>On mobile:</strong> open your wallet app (e.g., MetaMask, TrustWallet) and paste this website URL into the app's built-in browser. This ensures full wallet compatibility during purchase.</li>
+                    <li>Click "Connect Wallet" to connect your wallet.</li>
+                    <li>Select the currency you want to use (BNB, USDT, or USDC).</li>
+                    <li>Enter the amount you want to purchase.</li>
+                    <li>Confirm the transaction and wait for blockchain confirmation.</li>
+                    <li class="success-text">Tokens will be airdropped to your wallet address after the presale ends.</li>
+                </ol>
+                <p><strong>Note:</strong> Make sure your wallet is connected to the BNB Smart Chain network. You may be prompted to switch networks during the process.</p>
+                <button class="btn btn-secondary modal-close-action">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="connection-help-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 class="modal-title">Can't Connect Wallet?</h3>
+            <div class="modal-message">
+                <p>No problem — you can still participate in the presale.</p>
+                
+                <div class="direct-transfer-section">
+                    <h4 class="transfer-title">✅ Direct Transfer Option (Binance Smart Chain Only)</h4>
+                    <p>Send BNB, USDT, or USDC directly to the presale address:</p>
+                    
+                    <div class="address-container">
+                        <div class="address-highlight">
+                            <label class="address-label">Presale Address:</label>
+                            <textarea id="presale-address" readonly class="address-input">0x4917AaAD04FAfDA36aC8bf0cfEc811CDcc76196e</textarea>
+                            <button id="copy-address-btn" class="copy-btn">📋 Copy Address</button>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-section">
+                        <h4 class="warning-title">⚠️ Important Notes:</h4>
+                        <ul class="warning-list">
+                            <li>Only send via Binance Smart Chain (BSC) network</li>
+                            <li>Tokens will be automatically airdropped after presale ends</li>
+                            <li>Do not send directly from exchanges (Binance, OKX, etc.)</li>
+                            <li>Use personal wallets only (MetaMask, Trust Wallet, TokenPocket, etc.)</li>
+                            <li class="green-text">Tokens will be airdropped to your wallet address after the presale ends.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="btn btn-secondary modal-close-action">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="network-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+            <h3 class="modal-title">Network Mismatch</h3>
+            <p class="modal-message">You are not connected to the BNB Smart Chain. Please switch to BSC to proceed.</p>
+            <button id="modal-switch-network-btn" class="btn btn-primary">Switch to BSC Network</button>
+        </div>
+    </div>
+
+    <!-- Wallet App prompt modal (only shown on mobile if no MetaMask) -->
+    <div id="wallet-app-prompt-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 class="modal-title">Please open this site in the MetaMask App browser to connect</h3>
+            <p class="modal-message">It seems you're not using a DApp browser. Copy the link below and open it in the MetaMask App browser.</p>
+            <div class="address-container">
+                <label class="address-label">URL:</label>
+                <input type="text" id="wallet-app-link" value="" readonly class="address-input">
+                <button id="copy-wallet-link-btn" class="copy-btn">📋 Copy Link</button>
+            </div>
+            <button class="btn btn-secondary modal-close-action">Close</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

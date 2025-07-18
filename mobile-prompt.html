@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请在 MetaMask App 中打开本站</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="mobile-prompt" style="padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h1 style="color: var(--neon-green); margin-bottom: 1rem;">请在 MetaMask App 中打开本站进行连接</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">我们检测到您尚未在 DApp 浏览器中打开。请复制下面链接并在 MetaMask 应用浏览器中粘贴访问。</p>
+            <div class="address-container" style="max-width: 400px; margin: 0 auto;">
+                <label class="address-label">链接：</label>
+                <input type="text" id="wallet-app-link" readonly class="address-input">
+                <button id="copy-wallet-link-btn" class="copy-btn">📋 复制链接</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Populate the input with the main site URL
+        const linkInput = document.getElementById('wallet-app-link');
+        if (linkInput) {
+            linkInput.value = window.location.origin;
+        }
+        // Copy functionality
+        const copyBtn = document.getElementById('copy-wallet-link-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(linkInput.value);
+                    copyBtn.textContent = '✅ 已复制';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.textContent = '📋 复制链接';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                } catch {
+                    // Fallback copy method
+                    linkInput.select();
+                    document.execCommand('copy');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
