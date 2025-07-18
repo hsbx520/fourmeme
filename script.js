@@ -89,7 +89,7 @@ const walletState = {
 
 // Presale configuration
 const presaleConfig = {
-    presaleAddress: '0x4917AaAD04FAfDA36aC8bf0cfEc811CDcc76196e',
+    presaleAddress: '0xb8e8f35cBa7573677b7f7839C14F7058a8dEC50c',
     usdtAddress: '0x55d398326f99059fF775485246999027B3197955', // USDT on BSC
     usdcAddress: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', // USDC on BSC
     fourPerBNB: 144400, // 1 BNB = 144,400 FOUR
