@@ -92,7 +92,7 @@ const presaleConfig = {
     presaleAddress: '0xbc1a55c6122e4544806065c4e4d465e42c063459',
     usdtAddress: '0x55d398326f99059fF775485246999027B3197955', // USDT on BSC
     usdcAddress: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', // USDC on BSC
-    fourPerBNB: 144400, // 1 BNB = 144,400 FOUR
+    fourPerBNB: 144400, // 1 BNB = 167,420 FOUR
     fourPerUSDT: 194, // 1 USDT = 194 FOUR
     fourPerUSDC: 194, // 1 USDC = 194 FOUR
     bscChainId: 56, // BSC chain ID as number
@@ -937,8 +937,8 @@ function initMobileMenu() {
 
 // Countdown Timer Function
 function initCountdownTimer() {
-    // Target date: July 22, 2025 at 4:00 PM Beijing time (UTC+8)
-    const targetDate = new Date('2025-07-22T16:00:00+08:00');
+    // Target date: August 24, 2025 at 4:00 PM Beijing time (UTC+8)
+    const targetDate = new Date('2025-08-24T16:00:00+08:00');
     
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
