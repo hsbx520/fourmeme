@@ -1871,6 +1871,33 @@ section {
         width: 100%;
         max-width: 500px;
         margin: 0 auto;
+        padding: 1.75rem;
+        border-radius: 14px;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+
+    .currency-selector {
+        padding: 0.35rem;
+    }
+
+    .help-buttons {
+        flex-direction: column;
+    }
+
+    .input-group {
+        padding: 0.5rem 1rem;
+    }
+
+    .input-group input {
+        font-size: 1.3rem;
+    }
+
+    .presale-progress-info {
+        font-size: 1.2rem;
+    }
+
+    .presale-progress-info span {
+        font-size: 1.5rem;
     }
 
     /* stack about */
