@@ -95,6 +95,9 @@ const presaleConfig = {
     fourPerBNB: 250000, // 1 BNB = 250,000 FOUR
     fourPerUSDT: 214, // 1 USDT = 214 FOUR
     fourPerUSDC: 214, // 1 USDC = 214 FOUR
+    minBNB: 0.1,
+    minUSDT: 100,
+    minUSDC: 100,
     bscChainId: 56, // BSC chain ID as number
     bscChainIdHex: '0x38', // BSC chain ID as hex
     bscChainName: 'BNB Smart Chain',
@@ -655,6 +658,16 @@ async function handleBuyTransaction() {
     try {
         let tx;
         const amount = parseFloat(payAmount);
+        const minRequired = currentCurrency === 'BNB'
+            ? presaleConfig.minBNB
+            : currentCurrency === 'USDT'
+                ? presaleConfig.minUSDT
+                : presaleConfig.minUSDC;
+        
+        if (amount < minRequired) {
+            openMinAmountModal(currentCurrency, minRequired);
+            return;
+        }
         
         if (currentCurrency === 'BNB') {
             // Send BNB directly
@@ -1122,6 +1135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMobileMenu();
     initCountdownTimer();
     initHelpModals();
+    initMinAmountModal();
     
     console.log('All components initialized successfully');
 });
@@ -1139,4 +1153,17 @@ window.addEventListener('scroll', () => {
 function toggleMobileMenu() {
     // Implementation for mobile menu toggle
     console.log('Mobile menu toggle');
+}
+
+function openMinAmountModal(currency, min){
+    const m=document.getElementById('min-amount-modal');
+    const t=document.getElementById('min-modal-text');
+    if(t)t.textContent=`Please enter at least ${min} ${currency} to continue.`;
+    if(m)m.classList.add('show');
+}
+
+function initMinAmountModal(){
+    const m=document.getElementById('min-amount-modal');
+    if(!m)return;
+    m.addEventListener('click',e=>{if(e.target===m||e.target.classList.contains('modal-close-btn')||e.target.classList.contains('modal-close-action'))m.classList.remove('show');});
 }
