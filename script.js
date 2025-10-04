@@ -950,8 +950,8 @@ function initMobileMenu() {
 
 // Countdown Timer Function
 function initCountdownTimer() {
-    // Target date: October 5, 2025 at 12:00 PM Beijing time (UTC+8)
-    const targetDate = new Date('2025-10-05T12:00:00+08:00');
+    // Target date: October 5, 2025 at 15:00 PM Beijing time (UTC+8)
+    const targetDate = new Date('2025-10-05T15:00:00+08:00');
     
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
