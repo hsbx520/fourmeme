@@ -83,7 +83,7 @@
 
                         <div class="presale-progress">
                             <div class="presale-progress-info">
-                                <span>Raised $1,632,479.74</span>
+                                <span>Raised  $1,689,437.97</span>
                             </div>
                         </div>
 
@@ -99,6 +99,7 @@
                         </div>
 
                         <p class="presale-instructions">Select currency, enter amount, and connect wallet to purchase.</p>
+                        <p style="color: var(--neon-green); font-weight: 700; margin-top: -0.5rem;">Minimum purchase: 0.1 BNB or 100 USDT or 100 USDC</p>
 
                         <div class="currency-selector">
                             <button class="currency-tab active" data-currency="BNB">BNB</button>
@@ -491,7 +492,7 @@
                 <ol class="help-list">
                     <li><strong>On mobile:</strong> open your wallet app (e.g., MetaMask, TrustWallet) and paste this website URL into the app's built-in browser. This ensures full wallet compatibility during purchase.</li>
                     <li>Click "Connect Wallet" to connect your wallet.</li>
-                    <li>Select the currency you want to use (BNB, USDT, or USDC).</li>
+                    <li>Select the currency you want to use (BNB, USDT, or USDC). <span style="color: var(--neon-green); font-weight: 700;"><strong>Minimum purchase: 0.1 BNB or 100 USDT or 100 USDC</strong></span></li>
                     <li>Enter the amount you want to purchase.</li>
                     <li>Confirm the transaction and wait for blockchain confirmation.</li>
                     <li class="success-text">The system will automatically send tokens to your wallet address after payment is received. No claiming required.</li>
@@ -528,6 +529,7 @@
                             <li>Tokens will be automatically airdropped after presale ends</li>
                             <li>Do not send directly from exchanges (Binance, OKX, etc.)</li>
                             <li>Use personal wallets only (MetaMask, Trust Wallet, TokenPocket, etc.)</li>
+                            <li class="green-text"><strong>Minimum purchase: 0.1 BNB or 100 USDT or 100 USDC</strong></li>
                             <li class="green-text">The system will automatically send tokens to your wallet address after payment is received. No claiming required.</li>
                         </ul>
                     </div>
@@ -558,6 +560,15 @@
                 <input type="text" id="wallet-app-link" value="" readonly class="address-input">
                 <button id="copy-wallet-link-btn" class="copy-btn">📋 Copy Link</button>
             </div>
+            <button class="btn btn-secondary modal-close-action">Close</button>
+        </div>
+    </div>
+
+    <div id="min-amount-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 class="modal-title">Minimum Amount Required</h3>
+            <p class="modal-message"><span id="min-modal-text"></span></p>
             <button class="btn btn-secondary modal-close-action">Close</button>
         </div>
     </div>
